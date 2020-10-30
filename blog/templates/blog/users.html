@@ -1,0 +1,40 @@
+{% extends 'blog/base.html' %}
+
+{% block body %}
+<h1>Users Table</h1>
+<table>
+    <thead>
+        <th>Username</th>
+        <th>Email</th>
+        <th>Password</th>
+        <th>Action</th>
+    </thead>
+    <tbody>
+        
+        {% for u in page_obj %}
+        <tr>
+            <td>{{u.username}}</td>
+            <td>{{u.email}}</td>
+            <td>{{u.password}}</td>
+            <td>
+                <a href="/delete/{{u.id}}">Delete</a>
+                <a href="/update/{{u.pk}}">Update</a>
+            </td>
+        </tr>
+        {% endfor %}       
+    </tbody>
+</table>
+<div class="pagination">
+    {% if page_obj.has_previous %}
+        <a href="?page={{page_obj.previous_page_number}}">Previous </a>
+    {% endif %}
+    <span>
+        Page {{page_obj.number}} of {{page_obj.paginator.num_pages}} 
+    </span>
+    {% if page_obj.has_next %}
+        <a href="?page={{page_obj.next_page_number}}">Next</a>
+    {% endif %}
+</div>
+{% endblock body %}
+    
+    

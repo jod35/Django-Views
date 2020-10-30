@@ -1,0 +1,20 @@
+{% extends 'blog/base.html' %}
+
+{% block body %}
+<div class="form">
+    <form action="" method="post">
+        <h1>Add A User</h1>
+        {% csrf_token %}
+        
+        {% for f in form %}
+            {{f.label}}
+            <br>
+            {{f}}
+            <br>
+        {% endfor %}
+            
+        <input type="submit" value="Save">
+    </form>
+</div>
+{% endblock body %}
+    
